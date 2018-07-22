@@ -1,0 +1,35 @@
+:host {
+  display: block;
+}
+
+ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+ul li {
+  line-height: 44px;
+  padding: 0 10px;
+  cursor: pointer;
+  user-select: none;
+  color: gray;
+  position: relative;
+  background: #fff;
+}
+
+ul li:after {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 1px;
+  background: #ccc;
+  content: "";
+  transform: scaleY(0.5);
+}
+
+ul li:hover {
+  background: #efefef;
+  color: #000;
+  border-left: 3px solid red;
+}

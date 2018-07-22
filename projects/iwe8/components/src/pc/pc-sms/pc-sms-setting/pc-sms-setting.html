@@ -1,0 +1,12 @@
+<nz-row nzGutter="24">
+    <nz-col nzSpan="6">
+        <ul>
+            <li [class.open]="item.open" *ngFor="let item of list|async">
+                {{item.title}}
+            </li>
+        </ul>
+    </nz-col>
+    <nz-col nzSpan="18">
+
+    </nz-col>
+</nz-row>

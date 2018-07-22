@@ -1,0 +1,29 @@
+<ng-container *ngIf="menu">
+    <li (click)="_click()" nz-menu-item *ngIf="menu.type === 'item'">
+        <i class="anticon" [ngClass]="menu.icon"></i>
+        <span>{{menu.title}}</span>
+    </li>
+    <li nz-menu-group *ngIf="menu.type === 'group'">
+        <span title>
+            <i class="anticon" [ngClass]="menu.icon"></i>
+            <span *ngIf="!(nzCollapsed|store|async)">{{menu.title}}</span>
+        </span>
+        <ul>
+            <Li nz-menu-item *ngFor="let item of menu.children">
+                <pc-sider-menu [menu]="item"></pc-sider-menu>
+            </Li>
+        </ul>
+    </li>
+    <li nz-submenu *ngIf="menu.type === 'submenu'" [nzOpen]="menu.nzOpen" [nzDisabled]="menu.nzDisabled">
+        <span title>
+            <i class="anticon" [ngClass]="menu.icon"></i>
+            <span *ngIf="!(nzCollapsed|store|async)">{{menu.title}}</span>
+        </span>
+        <ul>
+            <li *ngFor="let item of menu.children">
+                <pc-sider-menu [menu]="item"></pc-sider-menu>
+            </li>
+        </ul>
+    </li>
+    <li nz-menu-divider *ngIf="menu.type === 'divider'"></li>
+</ng-container>

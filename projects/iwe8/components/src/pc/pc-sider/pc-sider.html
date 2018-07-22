@@ -1,0 +1,19 @@
+<nz-layout *ngIf="menus|async">
+    <nz-sider [nzCollapsed]="nzCollapsed|store|async" [nzCollapsedWidth]="nzCollapsedWidth|store|async" [nzCollapsible]="nzCollapsible|store|async"
+        [nzReverseArrow]="nzReverseArrow|store|async" [nzTrigger]="nzTrigger|store|async" [nzWidth]="nzWidth|store|async">
+        <ul nz-menu [nzMode]="item.nzMode" [nzTheme]="item.nzTheme" [nzInlineIndent]="item.nzInlineIndent" [nzInlineCollapsed]="nzCollapsed|store|async"
+            [nzSelectable]="item.nzSelectable" *ngFor="let item of menus|async">
+            <ng-container *ngIf="item.children">
+                <ng-container *ngFor="let child of item.children">
+                    <pc-sider-menu [menu]="child"></pc-sider-menu>
+                </ng-container>
+            </ng-container>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <nz-header>
+            <pc-header></pc-header>
+        </nz-header>
+        <ng-content></ng-content>
+    </nz-layout>
+</nz-layout>

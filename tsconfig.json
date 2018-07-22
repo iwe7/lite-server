@@ -1,0 +1,88 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./projects/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "paths": {
+      "@iwe8/common": [
+        "projects/iwe8/common/src/public_api.ts"
+      ],
+      "@iwe8/common/*": [
+        "projects/iwe8/common/src/lib/*"
+      ],
+      "@iwe8/core": [
+        "projects/iwe8/core/src/public_api.ts"
+      ],
+      "@iwe8/core/*": [
+        "projects/iwe8/core/src/lib/*"
+      ],
+      "@iwe8/animations": [
+        "projects/iwe8/animations/src/public_api.ts"
+      ],
+      "@iwe8/animations/*": [
+        "projects/iwe8/animations/src/lib/*"
+      ],
+      "@iwe8/cdk": [
+        "projects/iwe8/cdk/src/public_api.ts"
+      ],
+      "@iwe8/cdk/*": [
+        "projects/iwe8/cdk/src/lib/*"
+      ],
+      "@iwe8/elements": [
+        "projects/iwe8/elements/src/public_api.ts"
+      ],
+      "@iwe8/elements/*": [
+        "projects/iwe8/elements/src/lib/*"
+      ],
+      "@iwe8/forms": [
+        "projects/iwe8/forms/src/public_api.ts"
+      ],
+      "@iwe8/forms/*": [
+        "projects/iwe8/forms/src/lib/*"
+      ],
+      "@iwe8/router": [
+        "projects/iwe8/router/src/public_api.ts"
+      ],
+      "@iwe8/router/*": [
+        "projects/iwe8/router/src/lib/*"
+      ],
+      "@iwe8/components": [
+        "projects/iwe8/components/src/public_api.ts"
+      ],
+      "@iwe8/components/*": [
+        "projects/iwe8/components/src/lib/*"
+      ],
+      "@iwe8/store": [
+        "projects/iwe8/store/src/public_api.ts"
+      ],
+      "@iwe8/store/*": [
+        "projects/iwe8/store/src/lib/*"
+      ],
+      "@iwe8/schematics": [
+        "projects/iwe8/schematics/src/public_api.ts"
+      ],
+      "@iwe8/schematics/*": [
+        "projects/iwe8/schematics/src/lib/*"
+      ],
+      "@iwe8/store-pc": [
+        "projects/iwe8/store-pc/src/public_api.ts"
+      ],
+      "@iwe8/store-pc/*": [
+        "projects/iwe8/store-pc/src/lib/*"
+      ]
+    }
+  }
+}
