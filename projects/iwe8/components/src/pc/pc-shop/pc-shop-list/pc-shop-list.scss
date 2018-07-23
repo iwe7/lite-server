@@ -1,0 +1,17 @@
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    li {
+        height: 44px;
+        line-height: 44px;
+        padding: 0 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover {
+            background: #ccc;
+        }
+    }
+}

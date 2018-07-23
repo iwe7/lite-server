@@ -1,0 +1,5 @@
+<ul>
+    <li (click)="_click(item)" *ngFor="let item of list|async">
+        {{item.title}}
+    </li>
+</ul>

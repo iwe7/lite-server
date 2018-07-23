@@ -2,6 +2,30 @@
     display: block;
 }
 
+.setting {
+    margin-top: 10px;
+}
+
+.title {
+    font-size: 16px;
+    line-height: 30px;
+    padding: 10px 20px;
+    background: #fff;
+    zoom: 1;
+    .title-right {
+        float: right;
+    }
+}
+
+.empty {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+}
+
 ul {
     list-style: none;
     margin-top: 10px;

@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "lite-server",
-    "iry:mobile": "ng serve iwe7-airunyan --port 4202 --open",
-    "iry:pc": "ng serve iwe7-airunyan-pc --port 4201 --open"
+    "iry:mobile": "sh ./init.sh && ng serve iwe7-airunyan --port 4202 --open",
+    "iry:pc": "sh ./init.sh && ng serve iwe7-airunyan-pc --port 4201 --open"
   },
   "author": "",
   "license": "ISC",
@@ -47,23 +47,32 @@
   },
   "dependencies": {
     "@angular/animations": "^6.0.9",
+    "@angular/cdk": "^6.4.0",
     "@angular/common": "^6.0.9",
     "@angular/compiler": "^6.0.9",
     "@angular/core": "^6.0.9",
     "@angular/elements": "^6.0.9",
     "@angular/forms": "^6.0.9",
     "@angular/http": "^6.0.9",
+    "@angular/material": "^6.4.0",
     "@angular/platform-browser": "^6.0.9",
     "@angular/platform-browser-dynamic": "^6.0.9",
     "@angular/router": "^6.0.9",
+    "@delon/form": "^1.1.4",
+    "@delon/util": "^1.1.4",
     "@ngrx/effects": "^6.0.1",
     "@ngrx/entity": "^6.0.1",
     "@ngrx/store": "^6.0.1",
     "@ngrx/store-devtools": "^6.0.1",
+    "@swimlane/ngx-charts": "^9.0.0",
+    "@types/ajv": "^1.0.0",
+    "ajv": "^6.5.2",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
+    "iwe7-util3": "^0.0.1",
     "less": "^2.7.3",
     "ng-zorro-antd": "^1.1.1",
+    "ngx-color": "^2.0.2",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   }

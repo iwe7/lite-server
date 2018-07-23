@@ -1,0 +1,10 @@
+<nz-row nzGutter="24">
+    <nz-col nzSpan="4">
+        <ul>
+            <li (click)="_click(nav)" *ngFor="let nav of (shop|async).nav">{{nav.title}}</li>
+        </ul>
+    </nz-col>
+    <nz-col nzSpan="16">
+        <router-outlet></router-outlet>
+    </nz-col>
+</nz-row>

@@ -3,13 +3,17 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { CommonModule } from '@angular/common';
 import { PcSmsSettingComponent } from './pc-sms-setting/pc-sms-setting';
 import { NgModule } from '@angular/core';
+import { DelonFormModule } from '@delon/form';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
     imports: [
         CommonModule,
         NgZorroAntdModule,
-        Iwe8CommonModule
+        Iwe8CommonModule,
+        DelonFormModule,
+        FormsModule
     ],
     exports: [
         PcSmsSettingComponent

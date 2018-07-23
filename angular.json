@@ -664,7 +664,9 @@
               "projects/iwe7-airunyan-pc/src/styles.less",
               "projects/iwe7-airunyan-pc/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/ajv/dist/ajv.bundle.js"
+            ]
           },
           "configurations": {
             "production": {

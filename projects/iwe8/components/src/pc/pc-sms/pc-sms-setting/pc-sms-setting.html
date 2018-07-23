@@ -1,12 +1,24 @@
 <nz-row nzGutter="24">
+    <nz-col nzSpan="24">
+        <nz-alert nzType="success" nzMessage="短信说明" nzDescription="可以同时配置一个或多个平台短信，防止失效或者欠费!"></nz-alert>
+    </nz-col>
     <nz-col nzSpan="6">
         <ul>
-            <li [class.open]="item.open" *ngFor="let item of list|async">
+            <li (click)="_click(item)" [class.open]="item.open" *ngFor="let item of list|async">
                 {{item.title}}
             </li>
         </ul>
     </nz-col>
-    <nz-col nzSpan="18">
-
+    <nz-col class="setting" nzSpan="14" *ngIf="currentItem">
+        <h2 class="title">
+            <a [href]="currentItem.link">{{currentItem.title}}</a>
+            <div class="title-right">
+                <nz-switch [(ngModel)]="currentItem.open"></nz-switch>
+            </div>
+        </h2>
+        <sf *ngIf="currentItem.open" [schema]="currentItem.schema" [ui]="currentItem.ui" button="none"></sf>
+    </nz-col>
+    <nz-col class="empty" nzSpan="14" *ngIf="!currentItem">
+        请选择左边的短信平台
     </nz-col>
 </nz-row>

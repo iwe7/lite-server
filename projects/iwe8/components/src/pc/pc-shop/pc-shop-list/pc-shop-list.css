@@ -1,0 +1,19 @@
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+ul li {
+  height: 44px;
+  line-height: 44px;
+  padding: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+ul li:hover {
+  background: #ccc;
+}
