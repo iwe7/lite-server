@@ -12,6 +12,9 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "types": [
+      "projects/iwe8/types/bmap.d.ts"
+    ],
     "lib": [
       "es2017",
       "dom"
@@ -82,6 +85,12 @@
       ],
       "@iwe8/store-pc/*": [
         "projects/iwe8/store-pc/src/lib/*"
+      ],
+      "@iwe8/bmap": [
+        "projects/iwe8/bmap/src/public_api.ts"
+      ],
+      "@iwe8/bmap/*": [
+        "projects/iwe8/bmap/src/lib/*"
       ]
     }
   }

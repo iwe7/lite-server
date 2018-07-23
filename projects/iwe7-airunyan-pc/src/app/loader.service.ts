@@ -16,7 +16,6 @@ export class LoaderService {
     ) {
         this.util.setM('iwe7_design');
         this.util.setModel('app');
-        this.store.subscribe(res => console.log(res));
     }
 
     init() {

@@ -3907,6 +3907,12 @@ istanbul@^0.4.5:
     which "^1.1.1"
     wordwrap "^1.0.0"
 
+iwe7-script@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/iwe7-script/-/iwe7-script-0.0.5.tgz#158b32875641d5f381f47294df206bb5fd1cbab9"
+  dependencies:
+    tslib "^1.9.0"
+
 iwe7-util3@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/iwe7-util3/-/iwe7-util3-0.0.1.tgz#30948fb2bd2210fad4c1c5ad2c38768fe18bc847"

@@ -1,3 +1,4 @@
+import { Iwe8BmapModule } from './../../../../../bmap/src/lib/bmap.module';
 import { CommonModule } from '@angular/common';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { PcAddressEntryComponent } from './pc-address-entry/pc-address-entry';
@@ -8,7 +9,8 @@ import { FormsModule } from '@angular/forms';
     imports: [
         NgZorroAntdModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        Iwe8BmapModule
     ],
     exports: [
         PcAddressEntryComponent

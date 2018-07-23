@@ -4,6 +4,15 @@ import { SFSchema, SFUISchema } from '@delon/form';
 export interface Iwe8Shop {
     id: string;
     title: string;
+    address: {
+        offset_type: number;
+        province: string;
+        city: string;
+        district: string;
+        address: string;
+        longitude: string;
+        latitude: string;
+    }
 }
 export interface Iwe8ShopNav {
     title: string;
