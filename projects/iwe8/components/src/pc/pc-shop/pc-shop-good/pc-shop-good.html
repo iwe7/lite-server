@@ -17,5 +17,5 @@
 </simple-table>
 
 <ng-template #edit>
-    <sf [schema]="schema|async" [ui]="ui|async" (formChange)="formChange($event)" button="none"></sf>
+    <sf [schema]="schema|async" [ui]="ui|async" (formChange)="formChange($event)" (formError)="formError($event)" button="none"></sf>
 </ng-template>

@@ -13,11 +13,15 @@ export class PcFormsImagesComponent extends ControlWidget implements OnInit, OnD
     previewImage = '';
     previewVisible = false;
 
+    images: any[] = [];
+
     constructor(cd: ChangeDetectorRef, public util: Iwe7Util2Service) {
         super(cd);
         this.url = this.util.wupload;
     }
-    ngOnInit() { }
+    ngOnInit() {
+        this.images = this.value || [];
+    }
     ngOnDestroy() { }
     handlePreview = (file: UploadFile) => {
         this.previewImage = file.url || file.thumbUrl;
@@ -25,22 +29,19 @@ export class PcFormsImagesComponent extends ControlWidget implements OnInit, OnD
     }
 
     nzRemove = (file: UploadFile) => {
-        const images: any[] = this.value;
-        const index = images.indexOf(file);
-        images.splice(index, 1);
-        if (this.ui.change) this.ui.change(images);
-        this.setValue(images);
+        const index = this.images.indexOf(file);
+        this.images.splice(index, 1);
+        this.change();
         return true;
     }
 
     nzChange(e: any) {
-        const images = this.value;
-        for (let key in images) {
-            if (images[key].response) {
-                images[key] = images[key].response;
-            }
-        }
-        if (this.ui.change) this.ui.change(images);
-        this.setValue(images);
+        console.log(this.images);
+        this.change();
+    }
+
+    change() {
+        if (this.ui.change) this.ui.change(this.images);
+        this.setValue(this.images);
     }
 }

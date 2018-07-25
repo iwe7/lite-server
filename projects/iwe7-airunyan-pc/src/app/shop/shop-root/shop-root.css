@@ -12,6 +12,7 @@ ul li {
   cursor: pointer;
   background: #fff;
   text-align: center;
+  user-select: none;
 }
 
 ul li:hover {

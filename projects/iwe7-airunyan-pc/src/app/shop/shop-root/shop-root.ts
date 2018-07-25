@@ -45,7 +45,13 @@ export class ShopRootComponent implements OnInit {
 
     ngOnInit() { }
 
-    _click(nav: any) {
-        this.store.dispatch(nav.action);
+    _click(nav: any, e: Event) {
+        e.preventDefault();
+        e.stopPropagation();
+        try {
+            this.store.dispatch(nav.action);
+        } catch (error) {
+            window.location.reload();
+        }
     }
 }

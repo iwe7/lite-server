@@ -10,6 +10,7 @@ ul {
         cursor: pointer;
         background: #fff;
         text-align: center;
+        user-select: none;
         &:hover {
             background: #ccc;
         }

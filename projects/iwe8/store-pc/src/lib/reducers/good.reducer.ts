@@ -21,8 +21,12 @@ export const initState: any = adapter.getInitialState({
                 type: "string",
                 title: "商品编号",
                 description: "商品编码，如需要和库存或其他系统编码一致需手工填写，或者可以随机生成",
+                minLength: 4,
                 ui: {
-                    widget: "randomId"
+                    widget: "randomId",
+                    errors: {
+                        'required': '必填项'
+                    }
                 }
             },
             sid: {
@@ -57,12 +61,16 @@ export const initState: any = adapter.getInitialState({
             price: {
                 type: "number",
                 title: "售价",
-                description: "商品售价，与原价对比突出优惠力度"
+                description: "商品售价，与原价对比突出优惠力度",
+                mininum: 0.01,
+                maxinum: 1000000
             },
             price_del: {
                 type: "number",
                 title: "原价",
-                description: "商品原价，与售价对比突出优惠力度"
+                description: "商品原价，与售价对比突出优惠力度",
+                mininum: 0.01,
+                maxinum: 1000000
             },
             url: {
                 type: "string",
@@ -87,7 +95,11 @@ export const initState: any = adapter.getInitialState({
                 title: "标签",
                 description: "商品标签，如：最热，最新，推荐，新品等"
             }
-        }
+        },
+        required: [
+            "tip", "tag", "brand", "price", "price_del",
+            "images", "thumb", "title", "sig", "gid"
+        ]
     },
     ui: {},
     columns: [{ title: "商品编号" }]

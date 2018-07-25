@@ -26,9 +26,7 @@ export class PcShopGoodComponent implements OnInit {
         this.columns = this.store.select('pc', 'good', 'columns');
         this.schema = this.store.select('pc', 'good', 'schema');
         this.ui = this.store.select('pc', 'good', 'ui');
-
         this.shop = this.store.select('pc', 'shop', 'currentShop');
-        this.store.subscribe(res => console.log(res));
     }
 
     ngOnInit() { }
@@ -54,6 +52,10 @@ export class PcShopGoodComponent implements OnInit {
     }
 
     formChange(e: any) {
-        this.data = e;
+        this.data = { ...this.data, ...e };
+    }
+
+    formError(e: any) {
+        console.log(e);
     }
 }

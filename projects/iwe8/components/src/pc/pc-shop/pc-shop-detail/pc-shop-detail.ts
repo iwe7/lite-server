@@ -18,7 +18,6 @@ export class PcShopDetailComponent implements OnInit {
         public store: Store<any>,
         public util: Iwe7Util2Service,
     ) {
-        this.store.subscribe(res => console.log(res));
         this.schema = this.store.select('pc', 'shop', 'schema').pipe(
             filter(res => !!res),
             map(res => {

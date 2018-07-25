@@ -1,1 +1,1 @@
-ul{list-style:none;margin-top:10px;display:flex;flex-direction:column}ul li{height:45px;line-height:45px;padding:0 10px;cursor:pointer;background:#fff;text-align:center}ul li:hover{background:#ccc}
+ul{list-style:none;margin-top:10px;display:flex;flex-direction:column}ul li{height:45px;line-height:45px;padding:0 10px;cursor:pointer;background:#fff;text-align:center;user-select:none}ul li:hover{background:#ccc}

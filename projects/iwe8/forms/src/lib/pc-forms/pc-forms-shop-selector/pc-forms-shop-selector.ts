@@ -19,16 +19,21 @@ export class PcFormsShopSelectorComponent extends ControlWidget implements OnIni
         this.shops = this.store.select(shopAllSelector);
     }
     ngOnInit() {
-        this.listener = this.store.select('pc', 'shop', 'currentShop').subscribe(res => {
-            this.zone.run(() => {
-                this.sid = res.sid;
-                this.change();
+        if (!this.value) {
+            this.listener = this.store.select('pc', 'shop', 'currentShop').subscribe(res => {
+                this.zone.run(() => {
+                    this.sid = res.sid;
+                    this.change();
+                    this.detectChanges();
+                });
             });
-        });
+        }
     }
 
     ngOnDestroy() {
-        this.listener.unsubscribe();
+        if (this.listener) {
+            this.listener.unsubscribe();
+        }
     }
 
     change() {

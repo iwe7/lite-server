@@ -14,12 +14,23 @@ export class PcFormsRandomIdComponent extends ControlWidget implements OnInit, O
     ngOnInit() {
         const slat = 'i am a meepo boy';
         this.hashIds = new Hashids(slat, 11);
-        this.createRandom();
+        if (this.value) {
+            this.createRandom();
+            this.change();
+        }
     }
     ngOnDestroy() { }
 
     createRandom() {
         const str = new Date().getTime();
         this.key = this.hashIds.encode(str);
+        this.change();
+    }
+
+    change() {
+        if (this.ui.change) {
+            this.ui.change(this.key);
+        }
+        this.setValue(this.key);
     }
 }

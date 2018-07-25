@@ -1,5 +1,5 @@
 <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-    <nz-upload [nzAction]="url" [nzRemove]="nzRemove" (nzChange)="nzChange($event)" nzListType="picture-card" [(nzFileList)]="value" [nzShowButton]="!value || (value && value.length < 6)"
+    <nz-upload [nzAction]="url" [nzRemove]="nzRemove" (nzChange)="nzChange($event)" nzListType="picture-card" [(nzFileList)]="images" [nzMultiple]="true" [nzShowButton]="!images || (images && images.length < 6)"
         [nzPreview]="handlePreview">
         <i class="anticon anticon-plus"></i>
         <div class="ant-upload-text">上传</div>

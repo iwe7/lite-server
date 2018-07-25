@@ -26,6 +26,8 @@ export class PcShopGoodCategoryComponent implements OnInit {
         this.columns = this.store.select('pc', 'goodCategory', 'columns');
         this.schema = this.store.select('pc', 'goodCategory', 'schema');
         this.ui = this.store.select('pc', 'goodCategory', 'ui');
+
+        this.shop = this.store.select('pc', 'shop', 'currentShop');
     }
 
     ngOnInit() { }
