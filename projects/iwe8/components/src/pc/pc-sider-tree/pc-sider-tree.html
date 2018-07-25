@@ -1,11 +1,11 @@
 <nz-row nzGutter="24">
-    <nz-col nzSpan="8">
+    <nz-col nzSpan="6">
         <nz-tree [(ngModel)]="nodes" [nzCheckable]="true" [nzMultiple]="true" (nzCheckBoxChange)="mouseAction('check',$event)" (nzExpandChange)="mouseAction('expand',$event)"
             [nzDraggable]="true" (nzOnDragStart)="mouseAction('dragstart',$event)" (nzOnDragEnter)="mouseAction('enter',$event)"
             (nzOnDragLeave)="mouseAction('leave', $event)" (nzOnDrop)="mouseAction('drop', $event)" (nzOnDragEnd)="mouseAction('end', $event)">
         </nz-tree>
     </nz-col>
-    <nz-col nzSpan="16">
+    <nz-col nzSpan="14">
         <div class="empty-tip" *ngIf="!currentNode">
             请选择要操作的菜单
         </div>

@@ -1,6 +1,9 @@
+import { filter, tap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 import { PcAddressResult } from './../pc-address/pc-address-entry/pc-address-entry';
 import { ControlWidget } from '@delon/form';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 export interface PcFormsAddressInterface {
     offset_type: number;
     province: string;
@@ -9,6 +12,8 @@ export interface PcFormsAddressInterface {
     address: string;
     longitude: number;
     latitude: number;
+    street: string;
+    detail: string;
 }
 @Component({
     selector: 'pc-forms-address',
@@ -16,30 +21,62 @@ export interface PcFormsAddressInterface {
     styleUrls: ['./pc-forms-address.scss']
 })
 
-export class PcFormsAddressComponent extends ControlWidget implements OnInit {
+export class PcFormsAddressComponent extends ControlWidget implements OnInit, OnDestroy {
     static KEY: string = 'address';
-    loadingTip: string;
-    config: any;
-    constructor(cd: ChangeDetectorRef) {
+    province: string;
+    city: string;
+    district: string;
+    street: string;
+    longitude: number;
+    latitude: number;
+    address: string;
+    detail: string;
+    listener: Subscription;
+    constructor(cd: ChangeDetectorRef, private store: Store<any>) {
         super(cd);
     }
 
-    ngOnInit() {
-        this.loadingTip = this.ui.loadingTip || '加载中……';
-        this.config = this.ui.config || {};
+    ngOnDestroy() {
+        this.listener.unsubscribe();
     }
 
-    change(e: PcAddressResult) {
+    ngOnInit() {
+        this.listener = this.store.select('bmap', 'geocoderResult')
+            .pipe(
+                filter(res => !!res),
+                tap(res => {
+                    const addressComponents = res.addressComponents;
+                    this.province = addressComponents.province;
+                    this.city = addressComponents.city;
+                    this.district = addressComponents.district;
+                    this.street = addressComponents.street;
+                    this.longitude = res.point.lng;
+                    this.latitude = res.point.lat;
+                    this.address = res.address;
+                    this.change();
+                })
+            ).subscribe();
+    }
+
+    change() {
         const res: PcFormsAddressInterface = {
             offset_type: 3,
-            province: e.province,
-            city: e.city,
-            district: e.district,
-            longitude: e.point.lng,
-            latitude: e.point.lat,
-            address: e.address
+            province: this.province,
+            city: this.city,
+            district: this.district,
+            longitude: this.longitude,
+            latitude: this.latitude,
+            address: this.address,
+            street: this.street,
+            detail: this.detail
         };
-        if (this.ui.change) this.ui.change(res);
-        this.setValue(res);
+        try {
+            if (this.ui) {
+                if (this.ui.change) this.ui.change(res);
+            }
+            if (this.setValue) {
+                this.setValue(res);
+            }
+        } catch (err) { }
     }
 }

@@ -1,3 +1,4 @@
+import { ShopEffectService } from './effects/shop.effect';
 import { RouterModule } from '@angular/router';
 import { RouterEffectService } from './effects/rotuer.effect';
 import { NgModule } from '@angular/core';
@@ -7,7 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 @NgModule({
   imports: [
     StoreModule.forFeature('pc', pc.reducers),
-    EffectsModule.forFeature([RouterEffectService]),
+    EffectsModule.forFeature([RouterEffectService, ShopEffectService]),
     RouterModule
   ],
   declarations: [],

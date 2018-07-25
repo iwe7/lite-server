@@ -20,6 +20,8 @@ registerLocaleData(zh);
 
 import * as reducers from './reducers';
 import { DelonFormModule } from '@delon/form';
+import { DelonABCModule } from '@delon/abc';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -38,6 +40,9 @@ import { DelonFormModule } from '@delon/form';
     }, {
       path: "shop/:id",
       loadChildren: "./shop/shop.module#AppShopModule"
+    }, {
+      path: "card",
+      loadChildren: "./card/card.module#AppCardModule"
     }], {
         useHash: true
       }),
@@ -47,7 +52,8 @@ import { DelonFormModule } from '@delon/form';
     FormsModule,
     HttpClientModule,
     NgZorroAntdModule,
-    DelonFormModule.forRoot()
+    DelonFormModule.forRoot(),
+    DelonABCModule.forRoot()
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }, { provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]

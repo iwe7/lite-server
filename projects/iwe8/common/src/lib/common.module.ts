@@ -1,3 +1,4 @@
+import { CardTypePipe } from './pipes/card-type.pipe';
 import { StorePipe } from './pipes/store.pipe';
 import { NgModule } from '@angular/core';
 
@@ -5,10 +6,12 @@ import { NgModule } from '@angular/core';
   imports: [
   ],
   declarations: [
-    StorePipe
+    StorePipe,
+    CardTypePipe
   ],
   exports: [
-    StorePipe
+    StorePipe,
+    CardTypePipe
   ]
 })
 export class Iwe8CommonModule { }

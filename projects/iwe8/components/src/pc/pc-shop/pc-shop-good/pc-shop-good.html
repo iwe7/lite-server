@@ -1,0 +1,21 @@
+<page-header title="店铺商品管理">
+    <ng-template #logo>
+        <img [src]="(shop|async)?.shop_logo">
+    </ng-template>
+    <ng-template #content>
+        <desc-list size="small" col="2">
+            <desc-list-item term="店铺">{{(shop|async)?.business_name}}</desc-list-item>
+            <desc-list-item term="分店">{{(shop|async)?.branch_name}}</desc-list-item>
+            <desc-list-item term="营业时间">{{(shop|async)?.open_time}}</desc-list-item>
+        </desc-list>
+    </ng-template>
+    <ng-template #action>
+        <button nz-button [nzType]="'primary'" (click)="addGood()">添加商品</button>
+    </ng-template>
+</page-header>
+<simple-table [data]="list|async" [ps]="10" [columns]="columns|async">
+</simple-table>
+
+<ng-template #edit>
+    <sf [schema]="schema|async" [ui]="ui|async" (formChange)="formChange($event)" button="none"></sf>
+</ng-template>

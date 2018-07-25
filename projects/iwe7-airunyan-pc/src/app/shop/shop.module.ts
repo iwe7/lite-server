@@ -1,3 +1,4 @@
+import { ShopGoodCategoryComponent } from './shop-good-category/shop-good-category';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ShopMoneyComponent } from './shop-money/shop-money';
 import { ShopStateComponent } from './shop-state/shop-state';
@@ -31,6 +32,9 @@ import { RouterModule } from '@angular/router';
                 path: 'good',
                 component: ShopGoodComponent
             }, {
+                path: 'category',
+                component: ShopGoodCategoryComponent
+            }, {
                 path: "order",
                 component: ShopOrderComponent
             }, {
@@ -57,7 +61,8 @@ import { RouterModule } from '@angular/router';
         ShopEmployerComponent,
         ShopWorkComponent,
         ShopStateComponent,
-        ShopMoneyComponent
+        ShopMoneyComponent,
+        ShopGoodCategoryComponent
     ]
 })
 export class AppShopModule { }

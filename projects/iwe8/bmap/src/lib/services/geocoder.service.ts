@@ -1,7 +1,7 @@
 import { BmapService } from './bmap.service';
-import { Injectable } from '@angular/core';
-import { Observable, Subscriber } from 'rxjs';
-import { map, switchMap, filter } from 'rxjs/operators';
+import { Injectable, NgZone } from '@angular/core';
+import { Observable, Subscriber, of } from 'rxjs';
+import { switchMap, filter, tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 @Injectable({
@@ -10,23 +10,44 @@ import { Store } from '@ngrx/store';
 export class GeocoderService {
     geocoder: Observable<BMap.Geocoder>;
     constructor(
-        private store: Store<any>
+        private store: Store<any>,
+        private zone: NgZone
     ) {
         this.geocoder = this.store.select('bmap', 'loaded').pipe(
             filter(res => res),
-            map(res => {
-                return new BMap.Geocoder();
+            switchMap((res: boolean) => {
+                return of(new BMap.Geocoder());
             })
-        )
+        );
+
+        const map = this.store.select('bmap', 'map');
+
+        this.store.select('bmap', 'moveend').pipe(
+            switchMap(moveend => map.pipe(
+                filter(res => !!res),
+                switchMap(map => {
+                    const point = map.getCenter();
+                    return this.getLocation(point);
+                }),
+                tap(res => {
+                    this.store.dispatch({
+                        type: "BMapSetGeocoderResult",
+                        payload: res
+                    });
+                })
+            ))
+        ).subscribe();
     }
 
     getLocation(point: BMap.Point): Observable<BMap.GeocoderResult> {
         return this.geocoder.pipe(
             switchMap(res => {
                 return Observable.create((subscriber: Subscriber<BMap.GeocoderResult>) => {
-                    res.getLocation(point, (res: BMap.GeocoderResult) => {
-                        subscriber.next(res);
-                        subscriber.complete();
+                    this.zone.runOutsideAngular(() => {
+                        res.getLocation(point, (res: BMap.GeocoderResult) => {
+                            subscriber.next(res);
+                            subscriber.complete();
+                        });
                     });
                 });
             })

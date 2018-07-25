@@ -8,7 +8,7 @@ import { PcShopDetailComponent } from './pc-shop-detail/pc-shop-detail';
 import { PcShopListComponent } from './pc-shop-list/pc-shop-list';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { DelonABCModule } from '@delon/abc';
 
 @NgModule({
     imports: [
@@ -17,7 +17,8 @@ import { CommonModule } from '@angular/common';
         Iwe8CommonModule,
         DelonFormModule,
         FormsModule,
-        PcFormsModule
+        PcFormsModule,
+        DelonABCModule
     ],
     exports: [
         PcShopListComponent,

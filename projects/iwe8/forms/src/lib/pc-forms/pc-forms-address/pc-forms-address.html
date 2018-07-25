@@ -1,3 +1,37 @@
 <sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
-    <pc-address-entry (iwe8Change)="change($event)"></pc-address-entry>
+    <pc-address-entry>
+    </pc-address-entry>
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="24" class="map-container">
+            <div class="map" bmap></div>
+            <div class="map-marker"></div>
+        </nz-col>
+    </nz-row>
+    <nz-row nzGutter="24" style="margin-top: 10px;">
+        <nz-col nzSpan="6">
+            <input nz-input [(ngModel)]="province" readonly type="text" placeholder="省">
+        </nz-col>
+        <nz-col nzSpan="6">
+            <input nz-input [(ngModel)]="city" readonly type="text" placeholder="市">
+        </nz-col>
+        <nz-col nzSpan="6">
+            <input nz-input [(ngModel)]="district" readonly type="text" placeholder="区">
+        </nz-col>
+        <nz-col nzSpan="6">
+            <input nz-input [(ngModel)]="street" readonly type="text" placeholder="街道">
+        </nz-col>
+    </nz-row>
+    <nz-row nzGutter="24">
+        <nz-col nzSpan="24">
+            <input nz-input [(ngModel)]="address" readonly type="text" placeholder="地址缩写">
+        </nz-col>
+    </nz-row>
+    <nz-row nzGutter="24" style="margin-top: 10px;">
+        <nz-col nzSpan="6">
+            详细地址
+        </nz-col>
+        <nz-col nzSpan="18">
+            <input nz-input [(ngModel)]="detail" (ngModelChange)="change()" type="text" placeholder="详细地址">
+        </nz-col>
+    </nz-row>
 </sf-item-wrap>

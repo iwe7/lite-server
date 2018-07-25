@@ -1,0 +1,29 @@
+<ul>
+    <li *ngFor="let item of list|async">
+        <div class="card-id">
+            <span>cardId:&nbsp;</span>{{item.card_id}}
+        </div>
+        <div class="card-info">
+            <div class="card-tag">{{item.card_type|cardType}}</div>
+            <ng-container *ngIf="item.groupon">
+                <ng-container *ngTemplateOutlet="baseInfo;context:{$implicit:item.groupon.base_info}"></ng-container>
+            </ng-container>
+            <ng-container *ngIf="item.discount">
+                <ng-container *ngTemplateOutlet="baseInfo;context:{$implicit:item.discount.base_info}"></ng-container>
+            </ng-container>
+            <ng-container *ngIf="item.member_card">
+                <ng-container *ngTemplateOutlet="baseInfo;context:{$implicit:item.member_card.base_info}"></ng-container>
+            </ng-container>
+        </div>
+    </li>
+</ul>
+
+<ng-template #baseInfo let-item>
+    <div class="card-body" [style.background-color]="item.color">
+        <div class="card-title">{{item.brand_name}}</div>
+        <div class="card-description">{{item.description}}</div>
+        <div class="card-logo">
+            <img [src]="item.logo_url" alt="">
+        </div>
+    </div>
+</ng-template>

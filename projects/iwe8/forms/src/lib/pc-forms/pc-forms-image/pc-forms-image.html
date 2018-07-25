@@ -1,0 +1,9 @@
+<sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+    <nz-upload class="avatar-uploader" [nzShowUploadList]="false" (nzChange)="change($event)" [nzAction]="url" nzListType="picture-card">
+        <ng-container *ngIf="!value">
+            <i class="anticon anticon-plus"></i>
+            <div class="ant-upload-text">上传</div>
+        </ng-container>
+        <img *ngIf="value" [src]="value" class="avatar">
+    </nz-upload>
+</sf-item-wrap>

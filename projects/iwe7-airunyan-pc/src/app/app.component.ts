@@ -21,66 +21,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.loader.init();
-    this.util.wpost({
-      type: "GetShopListAction",
-      payload: {}
-    }).subscribe(res => {
-      console.log(res);
-    });
-    this.store.dispatch({
-      type: "InitShop",
-      payload: [{
-        id: "1",
-        title: "测试店铺",
-        action: {
-          type: "NavigateByUrl",
-          payload: "/shop/1/detail"
-        },
-        nav: [{
-          title: "店铺信息",
-          action: {
-            type: "NavigateByUrl",
-            payload: "/shop/1/detail"
-          }
-        }, {
-          title: "商品管理",
-          action: {
-            type: "NavigateByUrl",
-            payload: "/shop/1/good"
-          }
-        }, {
-          title: "订单管理",
-          action: {
-            type: "NavigateByUrl",
-            payload: "/shop/1/order"
-          }
-        }, {
-          title: "员工管理",
-          action: {
-            type: "NavigateByUrl",
-            payload: "/shop/1/employer"
-          }
-        }, {
-          title: "工单管理",
-          action: {
-            type: "NavigateByUrl",
-            payload: "/shop/1/work"
-          }
-        }, {
-          title: "员工业绩",
-          action: {
-            type: "NavigateByUrl",
-            payload: "/shop/1/money"
-          }
-        }, {
-          title: "财务统计",
-          action: {
-            type: "NavigateByUrl",
-            payload: "/shop/1/state"
-          }
-        }]
-      }]
-    });
     this.store.dispatch({
       type: 'InitSider',
       payload: [{
@@ -101,6 +41,19 @@ export class AppComponent implements OnInit {
             action: {
               type: "NavigateByUrl",
               payload: "/shop/list"
+            }
+          }]
+        }, {
+          type: "submenu",
+          title: "卡券管理",
+          icon: "anticon-setting",
+          children: [{
+            type: "item",
+            title: "卡券列表",
+            icon: "anticon-appstore",
+            action: {
+              type: "NavigateByUrl",
+              payload: "/card/list"
             }
           }]
         }, {

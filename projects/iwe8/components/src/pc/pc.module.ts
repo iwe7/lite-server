@@ -1,3 +1,4 @@
+import { PcCardModule } from './pc-card/pc-card.module';
 import { PcShopModule } from './pc-shop/pc-shop.module';
 import { PcSystemModule } from './pc-system/pc-system.module';
 import { PcQiniuModule } from './pc-qiniu/pc-qiniu.module';
@@ -16,7 +17,8 @@ import { NgModule } from '@angular/core';
         PcTemplateModule,
         PcQiniuModule,
         PcSystemModule,
-        PcShopModule
+        PcShopModule,
+        PcCardModule
     ]
 })
 export class Iwe8PcModule { }

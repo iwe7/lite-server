@@ -1,3 +1,4 @@
+
 export interface State {
     loaded: boolean;
     options: {
@@ -10,6 +11,17 @@ export interface State {
     localSearchResult: BMap.LocalResult;
     // 搜索关键字
     searchKeys: string[];
+
+    // 点击
+    click: any;
+    moveend: any;
+    dragend: any;
+    moving: any;
+    // 当前中心店
+    point: BMap.Point;
+    pointMarker: BMap.Marker;
+    // Geocoder
+    geocoderResult: BMap.GeocoderResult
 }
 
 export const initState: State = {
@@ -18,9 +30,16 @@ export const initState: State = {
         zoom: 18
     },
     map: null,
+    point: null,
     currentPosition: null,
     localSearchResult: null,
-    searchKeys: []
+    searchKeys: [],
+    click: null,
+    moveend: null,
+    moving: null,
+    dragend: null,
+    geocoderResult: null,
+    pointMarker: null
 };
 
 export function reducer(
@@ -28,8 +47,36 @@ export function reducer(
     action: any
 ) {
     switch (action.type) {
+        case "BMapSetPoint": {
+            state = { ...state, point: action.payload };
+            state.map.setCenter(state.point);
+            return state;
+        }
+        case "RemoveMap": {
+            return { ...state, map: null, moveend: null, moving: null };
+        }
         case "BMapLoaded": {
             return { ...state, loaded: true };
+        }
+        case "BMapClick": {
+            return { ...state, click: action.payload };
+        }
+        case "BMapMoveend": {
+            const point = state.map.getCenter();
+            state.point = point;
+            return { ...state, moveend: action.payload };
+        }
+        case "BMapMoving": {
+            state.point = state.map.getCenter();
+            return { ...state, moving: action.payload };
+        }
+        case "BMapDragend": {
+            // state.point = state.map.getCenter();
+            // return { ...state, dragend: action.payload };
+            return state;
+        }
+        case "BMapSetGeocoderResult": {
+            return { ...state, geocoderResult: action.payload };
         }
         case "SetMap": {
             return { ...state, map: action.payload };

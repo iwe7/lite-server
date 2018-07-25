@@ -2,8 +2,7 @@ import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { SFSchema, SFUISchema } from '@delon/form';
 export interface Iwe8Shop {
-    id: string;
-    title: string;
+    sid: string;
     address: {
         offset_type: number;
         province: string;
@@ -12,7 +11,18 @@ export interface Iwe8Shop {
         address: string;
         longitude: string;
         latitude: string;
-    }
+    },
+    categories: string[];
+    business_name: string;
+    branch_name: string;
+    telephone: string;
+    photo_list: string[];
+    recommend: string;
+    special: string;
+    introduction: string;
+    open_time: string;
+    avg_price: number;
+    shop_logo: string[];
 }
 export interface Iwe8ShopNav {
     title: string;
@@ -25,11 +35,12 @@ export interface State extends EntityState<Iwe8Shop> {
     ui?: SFUISchema;
     category?: string[];
 }
-export const adapter = createEntityAdapter<Iwe8Shop>();
-export const goodAdapter = createEntityAdapter<Iwe8Shop>();
+export const adapter = createEntityAdapter<Iwe8Shop>({
+    selectId: (item: Iwe8Shop) => item.sid
+});
 
 export const initState: State = adapter.getInitialState({
-    currentShop: null,
+    currentShop: {},
     schema: {
         properties: {
             categories: {
@@ -85,7 +96,15 @@ export const initState: State = adapter.getInitialState({
                         type: "string",
                         title: "地区"
                     },
+                    street: {
+                        type: "string",
+                        title: "街道"
+                    },
                     address: {
+                        type: "string",
+                        title: "地址缩写"
+                    },
+                    detail: {
                         type: "string",
                         title: "详细地址"
                     },
@@ -98,20 +117,32 @@ export const initState: State = adapter.getInitialState({
                         title: "纬度"
                     },
                 },
+                require: [
+                    "detail"
+                ],
                 ui: {
                     widget: "address"
                 }
             },
-
             telephone: {
                 type: "string",
                 title: "电话",
                 description: "固定电话需加区号；区号、分机号均用“-”连接"
             },
+            shop_logo: {
+                type: "string",
+                title: "店铺logo",
+                ui: {
+                    widget: "image",
+                }
+            },
             photo_list: {
-                type: "array",
+                type: "string",
                 title: "门店图片",
-                description: "像素要求必须为640*340像素，支持.jpg .jpeg .bmp .png格式，大小不超过5M"
+                description: "像素要求必须为640*340像素，支持.jpg .jpeg .bmp .png格式，大小不超过5M",
+                ui: {
+                    widget: "images"
+                }
             },
             recommend: {
                 type: "string",
@@ -152,9 +183,7 @@ export const initState: State = adapter.getInitialState({
             }
         }
     },
-    ui: {
-
-    },
+    ui: {},
     category: []
 });
 

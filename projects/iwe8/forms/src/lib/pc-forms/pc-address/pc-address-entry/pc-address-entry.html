@@ -1,19 +1,13 @@
 <nz-row nzGutter="24">
-    <nz-col nzSpan="12">
-        <input placeholder="请输入关键字" nz-input #keyword [nzAutocomplete]="auto">
+    <nz-col nzSpan="24">
+        <input placeholder="请输入关键字" nz-input #keyword [(ngModel)]="value" (ngModelChange)="change($event)" [nzAutocomplete]="auto">
         <nz-autocomplete #auto>
-            <nz-auto-option *ngFor="let item of filteredOptions|async">
+            <nz-auto-option [nzValue]="item" [nzLabel]="item.title" *ngFor="let item of autocompleteDataSource">
                 {{item.title}}
             </nz-auto-option>
         </nz-autocomplete>
     </nz-col>
     <nz-col nzSpan="12">
-        <input nz-input [(ngModel)]="address" type="text" placeholder="详细地址">
-    </nz-col>
-</nz-row>
-
-<nz-row nzGutter="24">
-    <nz-col nzSpan="24">
-        <div class="map" #bmap bmap [autoEle]="autoEle"></div>
+        <ng-content></ng-content>
     </nz-col>
 </nz-row>

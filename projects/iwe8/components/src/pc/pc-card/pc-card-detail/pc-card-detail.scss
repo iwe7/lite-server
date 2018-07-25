@@ -1,0 +1,13 @@
+:host {
+    display: block;
+    padding: 10px;
+}
+
+.tip {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}

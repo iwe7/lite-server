@@ -1,4 +1,6 @@
 import { Iwe7Util3Service } from 'iwe7-util3';
+import { Iwe7Util2Service } from 'iwe7-util2';
+
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of, from } from 'rxjs';
@@ -12,14 +14,40 @@ export class LoaderService {
 
     constructor(
         private util: Iwe7Util3Service,
+        private util2: Iwe7Util2Service,
         private store: Store<any>
     ) {
         this.util.setM('iwe7_design');
         this.util.setModel('app');
+        this.util2.setM('iwe7_design');
     }
 
     init() {
         this.loadShopCategory();
+        this.getCouponListAction();
+        this.initShop();
+    }
+
+    private initShop() {
+        this.util2.wpost('iwe7Shop', 'Loads', {}, {}).pipe(
+            tap((res: any) => {
+                this.store.dispatch({
+                    type: "InitShop",
+                    payload: res.data
+                })
+            })
+        ).subscribe();
+    }
+
+    private getCouponListAction() {
+        this.util.wpost({
+            type: "GetCouponListAction"
+        }).subscribe((res: any) => {
+            this.store.dispatch({
+                type: "InitCouponAction",
+                payload: res.data.list
+            });
+        });
     }
 
     private loadShopCategory() {
@@ -99,7 +127,7 @@ export class Iwe7ShopCategory {
         });
         if (children.length > 0) {
             this.json.children = children;
-        }else{
+        } else {
             this.json.isLeaf = true;
         }
         this.json.title = this.label;
@@ -108,5 +136,4 @@ export class Iwe7ShopCategory {
         this.json.parent = this.parent ? this.parent.label : "0";
         return this.json;
     }
-
 }

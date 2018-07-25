@@ -1,0 +1,19 @@
+:host {
+    display: block;
+    padding: 10px;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    li {
+        padding: 0 20px;
+        line-height: 45px;
+        cursor: pointer;
+        &:hover,
+        &.active {
+            background: #fff;
+        }
+    }
+}

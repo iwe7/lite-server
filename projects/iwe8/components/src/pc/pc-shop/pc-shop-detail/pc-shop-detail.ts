@@ -1,10 +1,10 @@
-import { CascaderOption } from 'ng-zorro-antd';
-import { map, tap, switchMap, filter } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { SFSchema, SFUISchema, CascaderWidget } from '@delon/form';
-import { Observable, of } from 'rxjs';
+import { SFSchema, SFUISchema } from '@delon/form';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-
+import { Iwe8SchemaStore } from '@iwe8/core';
+import { Iwe7Util2Service } from 'iwe7-util2';
 @Component({
     selector: 'pc-shop-detail',
     templateUrl: 'pc-shop-detail.html',
@@ -13,60 +13,31 @@ import { Component, OnInit } from '@angular/core';
 export class PcShopDetailComponent implements OnInit {
     schema: Observable<SFSchema>;
     ui: Observable<SFUISchema>;
+    default: Observable<any>;
     constructor(
-        public store: Store<any>
+        public store: Store<any>,
+        public util: Iwe7Util2Service,
     ) {
+        this.store.subscribe(res => console.log(res));
         this.schema = this.store.select('pc', 'shop', 'schema').pipe(
+            filter(res => !!res),
             map(res => {
-                const store = new Iwe8SchemaStore(res, this.store);
+                const store = new Iwe8SchemaStore(res, this.store, this.util);
                 return store.getSchma();
             }),
         );
-        this.ui = this.store.select('pc', 'shop', 'ui');
+        this.ui = this.store.select('pc', 'shop', 'ui').pipe(
+            filter(res => !!res)
+        );
+        this.default = this.store.select('pc', 'shop', 'currentShop').pipe(
+            filter(res => !!res)
+        );
     }
     ngOnInit() { }
-
-
-    formChange(e: any) {
-        console.log(e);
-    }
-
-}
-
-
-export class Iwe8SchemaStore {
-    children: { [key: string]: Iwe8SchemaStore } = {};
-    constructor(public schema: SFSchema, private store: Store<any>, public parent?: Iwe8SchemaStore) {
-        for (let key in schema) {
-            if (key === 'properties') {
-                const proper = schema['properties'];
-                for (let j in proper) {
-                    this.children[j] = new Iwe8SchemaStore(proper[j], store, this);
-                }
-            }
-            if (key === 'ui') {
-                const ui: any = schema['ui'];
-                for (let j in ui) {
-                    if (j === 'asyncData') {
-                        const k: string = ui[j];
-                        const p = () => this.store.select(...k.split('.')).pipe(
-                            map(res => res.children)
-                        );
-                        ui[j] = p;
-                    }
-                }
-            }
-        }
-
-
-    }
-
-    getSchma() {
-        const children = {};
-        for (const index in this.children) {
-            children[index] = this.children[index].getSchma();
-        }
-        this.schema.properties = children;
-        return this.schema;
+    formSubmit(e: any) {
+        this.store.dispatch({
+            type: "UpdateShop",
+            payload: e
+        });
     }
 }
