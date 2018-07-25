@@ -1,3 +1,4 @@
+import { PcShopGoodCategoryComponent } from './pc-shop-good-category/pc-shop-good-category';
 import { PcFormsModule } from '@iwe8/forms';
 import { PcShopGoodComponent } from './pc-shop-good/pc-shop-good';
 import { FormsModule } from '@angular/forms';
@@ -23,12 +24,14 @@ import { DelonABCModule } from '@delon/abc';
     exports: [
         PcShopListComponent,
         PcShopDetailComponent,
-        PcShopGoodComponent
+        PcShopGoodComponent,
+        PcShopGoodCategoryComponent
     ],
     declarations: [
         PcShopListComponent,
         PcShopDetailComponent,
-        PcShopGoodComponent
+        PcShopGoodComponent,
+        PcShopGoodCategoryComponent
     ],
     providers: [],
 })

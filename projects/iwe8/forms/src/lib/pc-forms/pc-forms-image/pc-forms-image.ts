@@ -13,9 +13,7 @@ export class PcFormsImageComponent extends ControlWidget implements OnInit, OnDe
         super(cd);
         this.url = this.util.wupload;
     }
-    ngOnInit() {
-        console.log(this);
-    }
+    ngOnInit() {}
 
     ngOnDestroy() { }
 

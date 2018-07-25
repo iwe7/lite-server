@@ -1,0 +1,11 @@
+<sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+    <nz-input-group nzSearch [nzSuffix]="suffixIconButton">
+        <input type="text" [(ngModel)]="key" nz-input placeholder="请输入或生成唯一编码">
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+        <button nz-button nzType="primary" (click)="createRandom()" nzSearch>
+            <i class="anticon anticon-search"></i>
+            生成
+        </button>
+    </ng-template>
+</sf-item-wrap>

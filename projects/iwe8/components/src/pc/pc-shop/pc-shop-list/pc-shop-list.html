@@ -1,5 +1,16 @@
 <ul>
     <li (click)="_click(item)" *ngFor="let item of list|async">
-        {{item.business_name}}
+        <div class="shop-header">
+            <img class="shop-logo" [src]="item.shop_logo" alt="">
+            <div class="shop-title">{{item.business_name}}</div>
+        </div>
+        <div class="shop-subheader">
+            <div class="shop-sub-title">
+                {{item.branch_name}}
+            </div>
+            <div class="shop-sub-description">
+                {{item.introduction}}
+            </div>
+        </div>
     </li>
 </ul>

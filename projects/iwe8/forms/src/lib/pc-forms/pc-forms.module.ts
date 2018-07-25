@@ -1,3 +1,5 @@
+import { PcFormsRandomIdComponent } from './pc-form-random-id/pc-form-random-id';
+import { PcFormsShopSelectorComponent } from './pc-forms-shop-selector/pc-forms-shop-selector';
 import { PcFormsImagesComponent } from './pc-forms-images/pc-forms-images';
 import { PcFormsImageComponent } from './pc-forms-image/pc-forms-image';
 import { CommonModule } from '@angular/common';
@@ -22,12 +24,16 @@ import { WidgetRegistry, DelonFormModule } from '@delon/form';
     declarations: [
         PcFormsAddressComponent,
         PcFormsImagesComponent,
-        PcFormsImageComponent
+        PcFormsImageComponent,
+        PcFormsShopSelectorComponent,
+        PcFormsRandomIdComponent
     ],
     entryComponents: [
         PcFormsAddressComponent,
         PcFormsImagesComponent,
-        PcFormsImageComponent
+        PcFormsImageComponent,
+        PcFormsShopSelectorComponent,
+        PcFormsRandomIdComponent
     ],
     providers: [],
 })
@@ -35,6 +41,8 @@ export class PcFormsModule {
     constructor(widgetRegistry: WidgetRegistry) {
         widgetRegistry.register(PcFormsAddressComponent.KEY, PcFormsAddressComponent);
         widgetRegistry.register(PcFormsImagesComponent.KEY, PcFormsImagesComponent);
+        widgetRegistry.register(PcFormsShopSelectorComponent.KEY, PcFormsShopSelectorComponent);
         widgetRegistry.register(PcFormsImageComponent.KEY, PcFormsImageComponent);
+        widgetRegistry.register(PcFormsRandomIdComponent.KEY, PcFormsRandomIdComponent);
     }
 }

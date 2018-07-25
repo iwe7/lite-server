@@ -19,63 +19,73 @@ export const initState: any = adapter.getInitialState({
         properties: {
             gid: {
                 type: "string",
-                title: "商品编号"
+                title: "商品编号",
+                description: "商品编码，如需要和库存或其他系统编码一致需手工填写，或者可以随机生成",
+                ui: {
+                    widget: "randomId"
+                }
             },
             sid: {
                 type: "string",
                 title: "店铺",
+                description: "商品所属店铺",
                 ui: {
-                    widget: "select",
-                    asyncData: "pc.shop.entities"
+                    widget: "shopSelector"
                 }
             },
             title: {
                 type: "string",
-                title: "名称"
+                title: "名称",
+                description: "给商品取一个营销型强的名字"
             },
             thumb: {
                 title: "缩略图",
                 type: "string",
+                description: "商品缩略图，在首页及其他第三方显示缩略小图",
                 ui: {
-                    widget: "upload",
-                    asyncData: "pc.good.current.images"
+                    widget: "image"
                 }
             },
             images: {
                 type: "string",
                 title: "图片",
+                description: "商品图片将在详情页面展示，如图片很大，请自行切图",
                 ui: {
-                    widget: "upload",
-                    asyncData: "pc.good.current.images"
+                    widget: "images"
                 }
             },
             price: {
                 type: "number",
-                title: "售价"
+                title: "售价",
+                description: "商品售价，与原价对比突出优惠力度"
             },
             price_del: {
                 type: "number",
-                title: "原价"
+                title: "原价",
+                description: "商品原价，与售价对比突出优惠力度"
             },
             url: {
                 type: "string",
                 title: "链接",
+                description: "如果商品需要外链到其他地方，在这里填写完整的url，留空系统自动生成详情链接"
             },
             brand: {
                 type: "string",
                 title: "品牌",
+                description: "品牌图标",
                 ui: {
-                    widget: "upload",
-                    asyncData: "pc.good.current.band"
+                    widget: "image",
                 }
             },
             tip: {
                 type: "string",
-                title: "提醒"
+                title: "提醒",
+                description: "广告语，购买语",
             },
             tag: {
                 type: "string",
-                title: "标签"
+                title: "标签",
+                description: "商品标签，如：最热，最新，推荐，新品等"
             }
         }
     },
