@@ -37,25 +37,15 @@ export class PcShopGoodComponent implements OnInit {
             nzTitle: "添加商品",
             nzComponentParams: {},
             nzContent: this.edit,
-            nzFooter: [
-                {
-                    label: "提交", type: "primary", onClick: () => {
-                        this.store.dispatch({
-                            type: "AddGood",
-                            payload: this.data
-                        });
-                        modal.close();
-                    }
-                }
-            ]
+            nzFooter: null
         });
     }
 
-    formChange(e: any) {
+    formSubmit(e: any) {
         this.data = { ...this.data, ...e };
-    }
-
-    formError(e: any) {
-        console.log(e);
+        this.store.dispatch({
+            type: "AddGood",
+            payload: this.data
+        });
     }
 }
