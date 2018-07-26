@@ -3,7 +3,7 @@ import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { SFSchema, SFUISchema } from '@delon/form';
 export interface Iwe8ShopGood {
-    id: string;
+    gid: string;
 }
 
 export interface State extends EntityState<Iwe8ShopGood> {
@@ -12,7 +12,7 @@ export interface State extends EntityState<Iwe8ShopGood> {
     columns: SimpleTableColumn[];
 }
 export const adapter = createEntityAdapter<Iwe8ShopGood>({
-    selectId: (item: Iwe8ShopGood) => item.id
+    selectId: (item: Iwe8ShopGood) => item.gid
 });
 export const initState: any = adapter.getInitialState({
     schema: {
@@ -35,6 +35,14 @@ export const initState: any = adapter.getInitialState({
                 description: "商品所属店铺",
                 ui: {
                     widget: "shopSelector"
+                }
+            },
+            cid: {
+                type: "string",
+                title: "分类",
+                description: "所属分类",
+                ui: {
+                    widget: "shopCategorySelector",
                 }
             },
             title: {
@@ -102,7 +110,13 @@ export const initState: any = adapter.getInitialState({
         ]
     },
     ui: {},
-    columns: [{ title: "商品编号" }]
+    columns: [
+        { title: "商品编号", index: "gid" },
+        { title: "商品名称", index: "title" },
+        { title: "所属店铺", index: "sid" },
+        { title: "商品缩略图", index: "thumb", type: "img" },
+        { title: "商品价格", index: "price" },
+    ]
 });
 
 export function reducer(
@@ -110,6 +124,9 @@ export function reducer(
     action: any
 ) {
     switch (action.type) {
+        case "InitShopGood": {
+            return adapter.addAll(action.payload, state);
+        }
         default: {
             return state;
         }

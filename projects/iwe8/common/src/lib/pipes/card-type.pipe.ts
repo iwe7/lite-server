@@ -16,7 +16,7 @@ export enum CardTypeEnum {
     name: 'cardType'
 })
 export class CardTypePipe implements PipeTransform {
-    transform(value: any, ...args: any[]): any {
+    transform(value: any): any {
         return CardTypeEnum[value]
     }
 }

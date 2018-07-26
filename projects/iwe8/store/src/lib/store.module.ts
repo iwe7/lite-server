@@ -1,10 +1,20 @@
+import { Iwe8WidgetsModule } from './widgets/widgets.module';
+import { Iwe8FormDirective } from './iwe8-form/iwe8-form';
+import { StoreModule } from '@ngrx/store';
 import { NgModule } from '@angular/core';
-import { StoreComponent } from './store.component';
+import * as reducers from './reducers/index';
 
 @NgModule({
-  imports: [
-  ],
-  declarations: [StoreComponent],
-  exports: [StoreComponent]
+    imports: [
+        StoreModule.forFeature('form', reducers.reducers),
+        Iwe8WidgetsModule
+    ],
+    exports: [
+        Iwe8FormDirective,
+    ],
+    declarations: [
+        Iwe8FormDirective,
+    ],
+    providers: [],
 })
-export class StoreModule { }
+export class Iwe8StoreModule { }

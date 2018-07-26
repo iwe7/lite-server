@@ -1,3 +1,4 @@
+import { PcFormsShopCategoryComponent } from './pc-forms-shop-category/pc-forms-shop-category';
 import { PcFormsRandomIdComponent } from './pc-form-random-id/pc-form-random-id';
 import { PcFormsShopSelectorComponent } from './pc-forms-shop-selector/pc-forms-shop-selector';
 import { PcFormsImagesComponent } from './pc-forms-images/pc-forms-images';
@@ -26,14 +27,16 @@ import { WidgetRegistry, DelonFormModule } from '@delon/form';
         PcFormsImagesComponent,
         PcFormsImageComponent,
         PcFormsShopSelectorComponent,
-        PcFormsRandomIdComponent
+        PcFormsRandomIdComponent,
+        PcFormsShopCategoryComponent
     ],
     entryComponents: [
         PcFormsAddressComponent,
         PcFormsImagesComponent,
         PcFormsImageComponent,
         PcFormsShopSelectorComponent,
-        PcFormsRandomIdComponent
+        PcFormsRandomIdComponent,
+        PcFormsShopCategoryComponent
     ],
     providers: [],
 })
@@ -44,5 +47,6 @@ export class PcFormsModule {
         widgetRegistry.register(PcFormsShopSelectorComponent.KEY, PcFormsShopSelectorComponent);
         widgetRegistry.register(PcFormsImageComponent.KEY, PcFormsImageComponent);
         widgetRegistry.register(PcFormsRandomIdComponent.KEY, PcFormsRandomIdComponent);
+        widgetRegistry.register(PcFormsShopCategoryComponent.KEY, PcFormsShopCategoryComponent);
     }
 }

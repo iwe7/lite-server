@@ -36,7 +36,23 @@ export class ShopEffectService {
                 })
             );
         })
-    )
+    );
+
+    @Effect()
+    AddGoodCategory$ = this.actions.ofType('AddGoodCategory').pipe(
+        switchMap((res: any) => {
+            const msgData = this.msg.loading('数据提交中');
+            return this.util.wpost('iwe7ShopGoodCategory', 'add', res.payload, {}).pipe(
+                map(res => {
+                    this.msg.remove(msgData.messageId);
+                    return {
+                        type: "AddGoodCategorySuccess",
+                        payload: res.data
+                    }
+                })
+            );
+        })
+    );
     constructor(
         public actions: Actions,
         public util: Iwe7Util2Service,

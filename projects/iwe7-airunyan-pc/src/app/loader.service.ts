@@ -26,6 +26,7 @@ export class LoaderService {
         this.loadShopCategory();
         this.getCouponListAction();
         this.initShop();
+        this.loadShopGoodCategory();
     }
 
     private initShop() {
@@ -55,6 +56,15 @@ export class LoaderService {
             this.store.dispatch({
                 type: "InitShopCateogry",
                 payload: res
+            });
+        });
+    }
+
+    private loadShopGoodCategory() {
+        this.util2.wpost('iwe7ShopGoodCategory', 'loads', {}).subscribe((res: any) => {
+            this.store.dispatch({
+                type: "InitShopGoodCategory",
+                payload: res.data.list
             });
         });
     }

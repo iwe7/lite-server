@@ -1,6 +1,7 @@
+import { Iwe7Util2Service } from 'iwe7-util2';
 import { SFSchema, SFUISchema } from '@delon/form';
 import { Observable } from 'rxjs';
-import { goodAllSelector } from '@iwe8/store-pc';
+import { goodCategoryAllSelector } from '@iwe8/store-pc';
 import { Store } from '@ngrx/store';
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { SimpleTableColumn } from '@delon/abc';
@@ -20,9 +21,10 @@ export class PcShopGoodCategoryComponent implements OnInit {
 
     constructor(
         private store: Store<any>,
-        private modal: NzModalService
+        private modal: NzModalService,
+        private util: Iwe7Util2Service
     ) {
-        this.list = this.store.select(goodAllSelector);
+        this.list = this.store.select(goodCategoryAllSelector);
         this.columns = this.store.select('pc', 'goodCategory', 'columns');
         this.schema = this.store.select('pc', 'goodCategory', 'schema');
         this.ui = this.store.select('pc', 'goodCategory', 'ui');
@@ -30,29 +32,31 @@ export class PcShopGoodCategoryComponent implements OnInit {
         this.shop = this.store.select('pc', 'shop', 'currentShop');
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+
+    }
     @ViewChild('edit') edit: TemplateRef<any>;
     data: any;
+
+    private _modal: any;
     addCategory() {
-        const modal = this.modal.create({
+        this._modal = this.modal.create({
             nzTitle: "添加商品分类",
             nzComponentParams: {},
             nzContent: this.edit,
-            nzFooter: [
-                {
-                    label: "提交", type: "primary", onClick: () => {
-                        this.store.dispatch({
-                            type: "AddGoodCategory",
-                            payload: this.data
-                        });
-                        modal.close();
-                    }
-                }
-            ]
+            nzFooter: null
         });
     }
 
-    formChange(e: any) {
-        this.data = e;
+    formSubmit(e: any) {
+        this.data = { ...this.data, ...e };
+        this.store.dispatch({
+            type: "AddGoodCategory",
+            payload: this.data
+        });
+        if (this._modal) {
+            this._modal.close();
+            this._modal = null;
+        }
     }
 }

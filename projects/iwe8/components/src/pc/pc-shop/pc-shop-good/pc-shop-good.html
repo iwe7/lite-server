@@ -13,9 +13,9 @@
         <button nz-button [nzType]="'primary'" (click)="addGood()">添加商品</button>
     </ng-template>
 </page-header>
-<simple-table [data]="list|async" [ps]="10" [columns]="columns|async">
+<simple-table [data]="list|async" [ps]="20" [columns]="columns|async">
 </simple-table>
 
 <ng-template #edit>
-    <sf [schema]="schema|async" [ui]="ui|async" (formSubmit)="formSubmit($event)"></sf>
+    <sf [schema]="schema|async" [ui]="ui|async" (formChange)="formChange($event)" (formSubmit)="formSubmit($event)"></sf>
 </ng-template>

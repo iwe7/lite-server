@@ -21,7 +21,11 @@ export class PcFormsRandomIdComponent extends ControlWidget implements OnInit, O
     }
     ngOnDestroy() { }
 
-    createRandom() {
+    createRandom(e?: Event) {
+        if (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
         const str = new Date().getTime();
         this.key = this.hashIds.encode(str);
         this.change();

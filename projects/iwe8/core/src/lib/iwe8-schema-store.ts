@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { SFSchema, SFSchemaEnumType } from '@delon/form';
 import { Iwe7Util2Service } from 'iwe7-util2';
 
-
 export class Iwe8SchemaStore {
     children: { [key: string]: Iwe8SchemaStore } = {};
     constructor(

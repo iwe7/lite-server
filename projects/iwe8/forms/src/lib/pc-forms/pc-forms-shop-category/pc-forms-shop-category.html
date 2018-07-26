@@ -1,0 +1,9 @@
+<sf-item-wrap [id]="id" [schema]="schema" [ui]="ui" [showError]="showError" [error]="error" [showTitle]="schema.title">
+    <nz-select style="width: 200px;" nzShowSearch nzAllowClear nzPlaceHolder="请选择分类" [(ngModel)]="cid" (ngModelChange)="change()">
+        <nz-option *ngFor="let shop of categorys|async" nzCustomContent [nzLabel]="shop.name" [nzValue]="shop.cid">
+            <div class="shop-item">
+                <img class="shop_logo" [src]="shop.logo" alt=""> {{shop.name}}
+            </div>
+        </nz-option>
+    </nz-select>
+</sf-item-wrap>

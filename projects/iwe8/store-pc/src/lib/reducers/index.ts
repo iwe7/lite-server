@@ -15,6 +15,7 @@ import * as money from './money.reducer';
 import * as state from './state.reducer';
 import * as card from './card.reducer';
 import * as coupon from './coupon.reducer';
+import * as currentForm from './current-form';
 
 export interface State {
     sider: sider.State;
@@ -33,6 +34,7 @@ export interface State {
     state: state.State;
     card: card.State;
     coupon: coupon.State;
+    currentForm: currentForm.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -51,5 +53,6 @@ export const reducers: ActionReducerMap<State> = {
     money: money.reducer,
     state: state.reducer,
     card: card.reducer,
-    coupon: coupon.reducer
+    coupon: coupon.reducer,
+    currentForm: currentForm.reducer
 };

@@ -1,14 +1,15 @@
 import { Observable } from 'rxjs';
 import { shopAllSelector } from '@iwe8/store-pc';
 import { Store } from '@ngrx/store';
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, NgZone, AfterViewInit } from '@angular/core';
 import { ControlWidget } from '@delon/form';
+import { tap, filter, map } from 'rxjs/operators';
 @Component({
     selector: 'pc-forms-shop-selector',
     templateUrl: 'pc-forms-shop-selector.html',
     styleUrls: ['./pc-forms-shop-selector.scss']
 })
-export class PcFormsShopSelectorComponent extends ControlWidget implements OnInit, OnDestroy {
+export class PcFormsShopSelectorComponent extends ControlWidget implements OnInit, OnDestroy, AfterViewInit {
     static KEY: string = 'shopSelector';
 
     shops: Observable<any[]>;
@@ -20,26 +21,29 @@ export class PcFormsShopSelectorComponent extends ControlWidget implements OnIni
     }
     ngOnInit() {
         if (!this.value) {
-            this.listener = this.store.select('pc', 'shop', 'currentShop').subscribe(res => {
-                this.zone.run(() => {
-                    this.sid = res.sid;
-                    this.change();
-                    this.detectChanges();
-                });
-            });
+            this.listener = this.store.select('pc', 'shop', 'currentShop').pipe(
+                map(res=>{
+                    return this.value ? this.value : res.sid
+                })
+            );
         }
     }
 
     ngOnDestroy() {
-        if (this.listener) {
-            this.listener.unsubscribe();
-        }
+
+    }
+
+    ngAfterViewInit() {
+
     }
 
     change() {
-        if (this.ui.change) {
-            this.ui.change(this.sid);
-        }
-        this.setValue(this.sid);
+        this.zone.run(()=>{
+            if (this.ui.change) {
+                this.ui.change(this.sid);
+            }
+            this.setValue(this.sid);
+            this.detectChanges();
+        });
     }
 }

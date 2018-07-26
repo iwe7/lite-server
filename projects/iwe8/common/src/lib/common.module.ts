@@ -1,3 +1,8 @@
+import { NgStoreDirective } from './directives/ng-store';
+import { GetTemplateDirective } from './directives/get-template';
+import { GetElementDirective } from './directives/get-element';
+import { GetViewDirective } from './directives/get-view';
+
 import { CardTypePipe } from './pipes/card-type.pipe';
 import { StorePipe } from './pipes/store.pipe';
 import { NgModule } from '@angular/core';
@@ -7,11 +12,19 @@ import { NgModule } from '@angular/core';
   ],
   declarations: [
     StorePipe,
-    CardTypePipe
+    CardTypePipe,
+    GetElementDirective,
+    GetTemplateDirective,
+    GetViewDirective,
+    NgStoreDirective
   ],
   exports: [
     StorePipe,
-    CardTypePipe
+    CardTypePipe,
+    GetElementDirective,
+    GetTemplateDirective,
+    GetViewDirective,
+    NgStoreDirective
   ]
 })
 export class Iwe8CommonModule { }

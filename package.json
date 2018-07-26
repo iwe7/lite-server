@@ -73,6 +73,7 @@
     "@swimlane/ngx-charts": "^9.0.0",
     "@types/ajv": "^1.0.0",
     "@types/hashids": "^1.0.30",
+    "@types/lodash": "^4.14.113",
     "ajv": "^6.5.2",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",

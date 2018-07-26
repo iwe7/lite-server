@@ -91,6 +91,12 @@
       ],
       "@iwe8/bmap/*": [
         "projects/iwe8/bmap/src/lib/*"
+      ],
+      "@iwe8/schema": [
+        "projects/iwe8/schema/src/public_api.ts"
+      ],
+      "@iwe8/schema/*": [
+        "projects/iwe8/schema/src/lib/*"
       ]
     }
   }

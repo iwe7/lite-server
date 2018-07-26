@@ -3,7 +3,7 @@
         <input type="text" [(ngModel)]="key" nz-input placeholder="请输入或生成唯一编码">
     </nz-input-group>
     <ng-template #suffixIconButton>
-        <button nz-button nzType="primary" (click)="createRandom()" nzSearch>
+        <button nz-button nzType="primary" (click)="createRandom($event)" nzSearch>
             <i class="anticon anticon-search"></i>
             生成
         </button>
